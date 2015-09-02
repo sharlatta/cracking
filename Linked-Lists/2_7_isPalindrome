@@ -1,0 +1,14 @@
+//2.7. Implement a function to check if a linked list is palindrome 
+
+//easy solution
+function isPalindrome (list) {
+    var arr = [];
+    var current = list.head;
+    while (current) {
+        arr.push(current.data);
+        current = current.next;
+    }
+    return arr.join(":") === arr.reverse(":").join("");
+}
+
+//might exist in place one - think about
