@@ -1,0 +1,36 @@
+function CircularList () {
+    this.head;
+    this.length = 0;
+}
+CircularList.prototype = {
+    add: function (data, restartPos) {
+        var node = {
+            data: data,
+            next: null
+        }
+        if (!this.head) {
+            this.head = node;
+        }
+        else {
+            var current = this.head;
+            var i = 0;
+
+            while (current.next !== null) {
+                current = current.next;
+            }
+            current.next = node;
+            current = current.next;
+            //loop here
+            if (restartPos) {
+                var loopNode = this.head
+                while (loopNode.next && i < restartPos) {
+                    i++;
+                    loopNode = loopNode.next;
+                }
+                current.next = loopNode;
+            }
+
+        }
+        this.length++;
+    }
+}
