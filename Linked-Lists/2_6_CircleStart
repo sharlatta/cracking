@@ -1,0 +1,51 @@
+//2.6. Given a circular linked list, implement an algorithm which returns node at the beginning of the loop
+//EXAMPLE:
+//INPUT a->b->c->d->e->c(the same c as earlier
+//OUTPUT: c
+
+//bad solution
+function isCircular (list) {
+    var current =  list.head;
+    var arr = [];
+    isCirc = false;
+    while (current !== null && !isCirc) {
+        arr.push(current);
+        if (arr.indexOf(current.next) !== -1) {
+            isCirc = true;
+        }
+        current = current.next;
+    }
+    return isCirc;
+}
+
+var list = new CircularList();
+list.add(1)
+list.add(2)
+list.add(3)
+list.add(4)
+list.add(5,2);
+
+var list2 = new CircularList();
+list2.add(1)
+list2.add(2)
+list2.add(3)
+list2.add(4)
+list2.add(5);
+
+
+//good solution
+function isCircularTortoiseAndHair(list) {
+    var tortoise = list.head,
+         hair = list.head.next;
+    isCirc = false;
+    while (tortoise !== null && hair !== null && !isCirc) {
+        if (tortoise === hair || hair.next === tortoise) {
+            isCirc = true;
+        }
+        tortoise = tortoise.next;
+        hair = hair.next.next;
+    }
+    return isCirc;
+}
+
+//TODO - need to add solution  wich returns a node
